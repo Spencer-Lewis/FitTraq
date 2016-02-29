@@ -33,6 +33,13 @@ angular.module('fitTraqApp')
         controller: 'SettingsController',
         controllerAs: 'vm',
         authenticate: true
+      })
+      .state('calendar', {
+        url: '/calendar',
+        templateUrl: 'app/account/calendar/calendar.html',
+        controller: 'CalendarController',
+        controllerAs: 'vm',
+        authenticate: true
       });
   })
   .run(function($rootScope) {
