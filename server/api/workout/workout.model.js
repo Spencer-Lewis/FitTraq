@@ -3,6 +3,8 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var WorkoutSchema = new mongoose.Schema({
+    title: String,
+    start: String,
     name: String,
     owner: String,
     exercises: [{

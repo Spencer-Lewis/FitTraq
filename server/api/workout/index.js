@@ -13,3 +13,11 @@ router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
 module.exports = router;
+
+
+// auth.isAuthenticated(),
+// auth.isAuthenticated(),
+// auth.isAuthenticated(),
+// auth.isAuthenticated(),
+// auth.isAuthenticated(),
+// auth.isAuthenticated(),

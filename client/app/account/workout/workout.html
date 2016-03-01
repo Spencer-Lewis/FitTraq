@@ -1,0 +1,78 @@
+
+
+
+
+<div id='userPanel' class=''>
+<br>
+  <img id='userImg' src="https://www.fillmurray.com/200/300">
+  <br>
+
+  <h4>Goals</h4>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.</p>
+  <h4>Plan</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat..</p>
+
+</div>
+
+
+
+
+
+<div id='calendar'></div>
+
+
+  <!-- Modal Structure -->
+<div id="modal1" class="modal" ng-controller='WorkoutController as vm'>
+    <div class="modal-content">
+        <h4 id='date'></h4>
+        <h4>Select a Workout</h4>
+        <form class="add-workout" ng-submit="vm.addWorkout()">
+          <div>
+              <select name='select'>
+                  <option value="cardio">Cardio</option>
+                  <option value="bodyweight">Bodyweight</option>
+                  <option value="weightlifts">Weightlifts</option>
+              </select>
+          </div>
+          <div class="input-field col s6">
+          <input type="text" class="validate" ng-model="vm.text">
+          <label for="workoutName" >Workout Name</label>
+          <button ng-click"vm.getWorkouts()">Add Exercise</button>
+          <input type='submit'>
+        </form>
+    </div>
+
+    <section class="workout-list">
+        <ul>
+          <li ng-repeat="workout in vm.Workouts"><p>{{ workout }}</p></li></ul></section>
+
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+    var events = [{title: "Derpfest", start: new Date(), datetime: new Date()}];
+    $('#calendar').fullCalendar({
+        events: events,
+        dayClick: function(date, jsEvent, view) {
+          var today = date.format();
+          $('#modal1 #date').html(today);
+          $('#modal1').openModal();
+                    }
+    })
+});
+
+</script>
+
+
+
+

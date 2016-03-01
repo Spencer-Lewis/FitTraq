@@ -33,3 +33,30 @@
 #splash {
   text-align: center;
 }
+
+
+
+//USER CALENDAR
+#userPanel {
+  width: 20%;
+  outline: 1px solid black;
+  float: left;
+  margin-left: 0.75%;
+  text-align: center;
+  background-color: #e57373;
+}
+#userImg {
+  border-radius: 100px;
+  border: 1px solid-white;
+  max-height: 250px;
+  width: 200px;
+}
+#calendar {
+  width: 75%;
+  margin-right: 2.5%;
+  float: right;
+}
+
+#modal1 {
+  text-align: center;
+}

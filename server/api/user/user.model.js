@@ -4,6 +4,8 @@ import crypto from 'crypto';
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 import {Schema} from 'mongoose';
 
+
+
 var UserSchema = new Schema({
   name: String,
   email: {
