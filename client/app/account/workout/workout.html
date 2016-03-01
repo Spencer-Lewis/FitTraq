@@ -1,4 +1,12 @@
-
+  <!-- Modal 2 Structure -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+    <p> View Workout Modal</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
 
 
 
@@ -27,7 +35,7 @@
 <div id='calendar'></div>
 
 
-  <!-- Modal Structure -->
+  <!-- Modal 1 Structure -->
 <div id="modal1" class="modal" ng-controller='WorkoutController as vm'>
     <div class="modal-content">
         <h4 id='date'></h4>
@@ -43,7 +51,6 @@
           <div class="input-field col s6">
           <input type="text" class="validate" ng-model="vm.text">
           <label for="workoutName" >Workout Name</label>
-          <button ng-click"vm.getWorkouts()">Add Exercise</button>
           <input type='submit'>
         </form>
     </div>
@@ -55,7 +62,13 @@
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
+
 </div>
+
+
+
+
+
 
 <script>
   $(document).ready(function() {
@@ -63,11 +76,15 @@
     var events = [{title: "Derpfest", start: new Date(), datetime: new Date()}];
     $('#calendar').fullCalendar({
         events: events,
+        eventClick: function(date, jsEvent, view) {
+          alert('Clicked Event!');
+          $('#modal2').openModal();
+        },
         dayClick: function(date, jsEvent, view) {
           var today = date.format();
           $('#modal1 #date').html(today);
           $('#modal1').openModal();
-                    }
+        }
     })
 });
 

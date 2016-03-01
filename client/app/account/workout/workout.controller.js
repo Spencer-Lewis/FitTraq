@@ -22,6 +22,7 @@ function WorkoutController ($http){
   // vm.addEvent = addEvent;
   vm.addWorkout = addWorkout;
   vm.getWorkouts = getWorkouts;
+  vm.deleteWorkout = deleteWorkout;
   vm.Log = Log;
 
   // function addEvent(){
@@ -38,7 +39,8 @@ function WorkoutController ($http){
 
     $http.get('/api/workouts').then(response => {
       vm.events = response.data;
-      return console.log(vm.events);
+      console.log(vm.events);
+      return vm.events
     });
   }
 
@@ -46,8 +48,15 @@ function WorkoutController ($http){
   function addWorkout() {
     console.log("adding workout");
 
-    $http.post('/api/workouts', { name: "newWorkout2"} )
+    $http.post('/api/workouts', { name: vm.text} )
   };
+
+  function deleteWorkout(workout) {
+    console.log("deleting working");
+
+    $http.delete('/api/workouts/' + workout._id);
+  }
+
   }
 ]);
 
