@@ -6,6 +6,10 @@ function WorkoutController ($http){
 
   var vm = this;
   vm.$http = $http;
+  vm.events = [];
+  vm.workouts = [];
+  vm.event = {}
+  vm.user = {};
 //   this.Workouts = [{
 //     name: "Chest Day",
 //     owner: "Spencer",
@@ -23,7 +27,10 @@ function WorkoutController ($http){
   vm.addWorkout = addWorkout;
   vm.getWorkouts = getWorkouts;
   vm.deleteWorkout = deleteWorkout;
+  vm.showWorkout = showWorkout;
+  vm.getEvents = getEvents;
   vm.Log = Log;
+
 
   // function addEvent(){
   //     vm.Workouts.push({name: vm.text, owner: "Spencer"});
@@ -34,16 +41,36 @@ function WorkoutController ($http){
     console.log("called the function");
   }
 
+  function getEvents() {
+    console.log(vm.user);
+    User.findByIdAsync(req.user._id)
+    .then(user => {
+      vm.user = user.data
+      console.log(vm.user);
+  });
+}
+
   function getWorkouts() {
-    vm.events = [];
 
     $http.get('/api/workouts').then(response => {
-      vm.events = response.data;
-      console.log(vm.events);
-      return vm.events
+      vm.workouts = response.data;
+      console.log(vm.workouts);
+      return vm.workouts
     });
   }
 
+
+  function showWorkout(workout) {
+    $http.get('/api/workouts/' + workout._id).then(response => {
+      vm.event = response.data;
+      console.log(vm.event)
+      return vm.event
+    })
+  }
+
+  function editWorkout(workout) {
+    $http.post('/api/workouts/' + workout._id)
+  }
 
   function addWorkout() {
     console.log("adding workout");
