@@ -1,16 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/workouts              ->  index
- * POST    /api/workouts              ->  create
- * GET     /api/workouts/:id          ->  show
- * PUT     /api/workouts/:id          ->  update
- * DELETE  /api/workouts/:id          ->  destroy
+ * GET     /api/events              ->  index
+ * POST    /api/events              ->  create
+ * GET     /api/events/:id          ->  show
+ * PUT     /api/events/:id          ->  update
+ * DELETE  /api/events/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Workout from './workout.model';
+import Event from './event.model';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,44 +60,48 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Workouts
+// Gets a list of Events
 export function index(req, res) {
-  Workout.findAsync()
+  Event.find({owner: req.user._id})
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Workout from the DB
+// Gets a single Event from the DB
 export function show(req, res) {
-  Workout.findByIdAsync(req.params.id)
+  Event.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Workout in the DB
+// Creates a new Event in the DB
 export function create(req, res) {
-  Workout.createAsync(req.body)
+  console.log(req.user);
+  var event = new Event(req.body)
+  event.owner = req.user._id
+  event.save()
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Workout in the DB
+// Updates an existing Event in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Workout.findByIdAsync(req.params.id)
+  Event.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Workout from the DB
+// Deletes a Event from the DB
 export function destroy(req, res) {
-  Workout.findByIdAsync(req.params.id)
+  Event.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+

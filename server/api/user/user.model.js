@@ -18,21 +18,7 @@ var UserSchema = new Schema({
   },
   password: String,
   provider: String,
-  salt: String,
-
-  workoutEvents: [{
-    title: String,
-    datetime: String,
-    formatted_datetime: {
-        type: String
-    },
-    description: {
-        type: String
-    },
-    workout: { type: mongoose.Schema.ObjectId, ref: 'Workout' }
-  }],
-
-  workouts: [ { type: mongoose.Schema.ObjectId, ref: 'Workout' } ]
+  salt: String
 });
 
 /**

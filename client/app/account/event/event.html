@@ -1,6 +1,6 @@
   <!-- Modal 2 Structure -->
 <div id="modal2" class="modal">
-    <div class="modal-content" ng-controller="WorkoutController as vm">
+    <div class="modal-content" ng-controller="EventController as vm">
     <p> View Workout Modal</p>
     </div>
     <div class="modal-footer">
@@ -36,11 +36,11 @@
 
 
   <!-- Modal 1 Structure -->
-<div id="modal1" class="modal" ng-controller='WorkoutController as vm'>
+<div id="modal1" class="modal" ng-controller='EventController as vm'>
     <div class="modal-content">
-        <h4 id='date'></h4>
+        <h4 id='date' ng-model='vm.date'></h4>
         <h4>Select a Workout</h4>
-        <form class="add-workout" ng-submit="vm.addWorkout(); vm.getWorkouts(); vm.getEvents()">
+        <form class="add-event" ng-submit="vm.Log(); vm.addEvent(); vm.getEvents()">
           <div>
               <select name='select'>
                   <option value="cardio">Cardio</option>
@@ -48,16 +48,28 @@
                   <option value="weightlifts">Weightlifts</option>
               </select>
           </div>
+
           <div class="input-field col s6">
-          <input type="text" class="validate" ng-model="vm.text">
-          <label for="workoutName" >Workout Name</label>
+          <input type="text" class="validate" ng-model="vm.text1">
+          <label for="workoutName" >Workout Name</label></div>
+
+                  <div class="row">
+                      <div class="input-field col s12">
+                          <textarea ng-model="vm.textarea1" id="textarea1" class="materialize-textarea"></textarea>
+                          <label for="textarea1">Workout Notes</label>
+                      </div>
+                  </div>
+
+
+
+
           <input type='submit'>
         </form>
     </div>
 
-    <section class="workout-list">
+    <!-- <section class="workout-list">
         <ul>
-          <li ng-repeat="workout in vm.workouts"><p>{{ workout }}</p></li></ul></section>
+          <li ng-repeat="event in vm.events"><p>{{ event }}</p></li></ul></section> -->
 
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -66,20 +78,26 @@
 </div>
 
 
+<div ng-controller='EventController as vm'>
+        <ul>
+          <li id="events">{{ vm.events }}</li>
+        </ul>
+</div>
 
 
-
-<script src="workout.controller.js"></script>
 <script>
   $(document).ready(function() {
     $('select').material_select();
-    var events = [{title: "Derpfest", start: new Date(), datetime: new Date()}];
+    // var events = [{title: "Derpfest", start: new Date(), datetime: new Date()}];
+    var events = $('#events').text();
+    console.log(events);
     $('#calendar').fullCalendar({
+
         events: events,
         eventClick: function(date, jsEvent, view) {
           console.log(date.start._i);
-          $('#modal2').html(date.title + "<br>");
-          $('#modal2').append(date.start._i);
+          // $('#modal2').html(date.title + "<br>");
+          // $('#modal2').append(date.start._i);
           $('#modal2').openModal();
         },
         dayClick: function(date, jsEvent, view) {
@@ -89,8 +107,8 @@
         }
     })
 });
-
 </script>
+
 
 
 

@@ -36,8 +36,8 @@ angular.module('fitTraqApp')
       })
       .state('calendar', {
         url: '/calendar',
-        templateUrl: 'app/account/workout/workout.html',
-        controller: 'WorkoutController',
+        templateUrl: 'app/account/event/event.html',
+        controller: 'EventController',
         controllerAs: 'vm'
       });
   })

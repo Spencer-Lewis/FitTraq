@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newWorkout;
+var newEvent;
 
-describe('Workout API:', function() {
+describe('Event API:', function() {
 
-  describe('GET /api/workouts', function() {
-    var workouts;
+  describe('GET /api/events', function() {
+    var events;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/workouts')
+        .get('/api/events')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          workouts = res.body;
+          events = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      workouts.should.be.instanceOf(Array);
+      events.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/workouts', function() {
+  describe('POST /api/events', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/workouts')
+        .post('/api/events')
         .send({
-          name: 'New Workout',
-          info: 'This is the brand new workout!!!'
+          name: 'New Event',
+          info: 'This is the brand new event!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Workout API:', function() {
           if (err) {
             return done(err);
           }
-          newWorkout = res.body;
+          newEvent = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created workout', function() {
-      newWorkout.name.should.equal('New Workout');
-      newWorkout.info.should.equal('This is the brand new workout!!!');
+    it('should respond with the newly created event', function() {
+      newEvent.name.should.equal('New Event');
+      newEvent.info.should.equal('This is the brand new event!!!');
     });
 
   });
 
-  describe('GET /api/workouts/:id', function() {
-    var workout;
+  describe('GET /api/events/:id', function() {
+    var event;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/workouts/' + newWorkout._id)
+        .get('/api/events/' + newEvent._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          workout = res.body;
+          event = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      workout = {};
+      event = {};
     });
 
-    it('should respond with the requested workout', function() {
-      workout.name.should.equal('New Workout');
-      workout.info.should.equal('This is the brand new workout!!!');
+    it('should respond with the requested event', function() {
+      event.name.should.equal('New Event');
+      event.info.should.equal('This is the brand new event!!!');
     });
 
   });
 
-  describe('PUT /api/workouts/:id', function() {
-    var updatedWorkout;
+  describe('PUT /api/events/:id', function() {
+    var updatedEvent;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/workouts/' + newWorkout._id)
+        .put('/api/events/' + newEvent._id)
         .send({
-          name: 'Updated Workout',
-          info: 'This is the updated workout!!!'
+          name: 'Updated Event',
+          info: 'This is the updated event!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Workout API:', function() {
           if (err) {
             return done(err);
           }
-          updatedWorkout = res.body;
+          updatedEvent = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedWorkout = {};
+      updatedEvent = {};
     });
 
-    it('should respond with the updated workout', function() {
-      updatedWorkout.name.should.equal('Updated Workout');
-      updatedWorkout.info.should.equal('This is the updated workout!!!');
+    it('should respond with the updated event', function() {
+      updatedEvent.name.should.equal('Updated Event');
+      updatedEvent.info.should.equal('This is the updated event!!!');
     });
 
   });
 
-  describe('DELETE /api/workouts/:id', function() {
+  describe('DELETE /api/events/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/workouts/' + newWorkout._id)
+        .delete('/api/events/' + newEvent._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Workout API:', function() {
         });
     });
 
-    it('should respond with 404 when workout does not exist', function(done) {
+    it('should respond with 404 when event does not exist', function(done) {
       request(app)
-        .delete('/api/workouts/' + newWorkout._id)
+        .delete('/api/events/' + newEvent._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

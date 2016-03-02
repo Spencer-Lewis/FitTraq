@@ -16,3 +16,5 @@ angular.module('fitTraqApp', [
 
     $locationProvider.html5Mode(true);
   });
+
+var events = [];
