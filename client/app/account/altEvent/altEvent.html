@@ -9,11 +9,11 @@
           Type: {{ event.workoutType }}<br>
           Start: {{ event.start }} <br>
           Description: {{ event.workout }}<br>
+          <a ui-sref="eventShow({id: id})">Edit Workout</a>
           </li>
         </ul>
         <div class="card-action">
-              <a ui-sref="eventShow({id: id})">View Workout</a>
-              <button ng-click="vm.deleteEvent(event)">Delete Workout</button>
+              <a ng-click="vm.deleteEvent(event)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></a>
             </div>
 
             </div>

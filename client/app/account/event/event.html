@@ -1,7 +1,6 @@
   <!-- Modal 2 Structure -->
 <div id="modal2" class="modal">
     <div class="modal-content" ng-controller="EventController as vm">
-    <p> View Workout Modal</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -10,21 +9,16 @@
 
 
 
-<div id='userPanel' class=''>
+<div id='userPanel' class='' ng-controller="EventController as vm">
 <br>
-  <img id='userImg' src="https://www.fillmurray.com/200/300">
-  <br>
 
-  <h4>Goals</h4>
-    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat.</p>
+  <img id='userImg' src="{{ vm.user.profileImg }}">
+<h5> {{ vm.user.name }}</h5>
+<br>
+  <h4>Goal</h4>
+    <p> {{ vm.user.goal }}</p>
   <h4>Plan</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat..</p>
+    <p>{{ vm.user.plan }}</p>
 
 </div>
 
@@ -42,10 +36,11 @@
         <h4>Select a Workout</h4>
         <form class="add-event" ng-submit="vm.Log(); vm.addEvent(); vm.getEvents(); vm.closeModal();">
           <div>
-              <select placeholder='Workout Type' ng-model='vm.workoutType' name='vm.workoutType'>
-                  <option value="cardio">Cardio</option>
-                  <option value="bodyweight">Bodyweight</option>
-                  <option value="weightlifts">Weightlifts</option>
+              <select ng-model="vm.workoutType">
+                  <option value="" disabled selected>Choose your Workout Type</option>
+                  <option value="Cardio">Cardio</option>
+                  <option value="Bodyweight">Bodyweight</option>
+                  <option value="Weightlifts">Weightlifts</option>
               </select>
           </div>
 

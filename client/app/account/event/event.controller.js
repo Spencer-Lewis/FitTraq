@@ -22,6 +22,7 @@ function EventController ($http){
   vm.deleteEvent = deleteEvent;
   vm.buildCalendar = buildCalendar;
   vm.closeModal = closeModal;
+  vm.getUser = getUser;
 
   getEvents();
 
@@ -32,11 +33,14 @@ function EventController ($http){
         events: vm.events,
         eventClick: function(date, jsEvent, view) {
           console.log(date.start._i);
-          // $('#modal2').html(date.title + "<br>");
-          // $('#modal2').append(date.start._i);
+          $('#modal2').html("<h4>" + date.title + "</h4>");
+          $('#modal2').append("<h6>" + date.start._i + "</h6>");
+          $('#modal2').append("<h5>" + date.workoutType + "</h5>");
+          $('#modal2').append("<h5>" + date.workout + "</h5>");
           $('#modal2').openModal();
         },
         dayClick: function(date, jsEvent, view) {
+
           var today = date.format();
           $('#modal1 #date').html(today);
           $('#modal1').openModal();
@@ -63,6 +67,7 @@ function EventController ($http){
       console.log(vm.events);
       vm.buildCalendar();
       return vm.events;
+      getUser();
     });
   }
 
@@ -76,7 +81,7 @@ function EventController ($http){
   }
 
   function editEvent(event) {
-    $http.post('/api/events/' + event._id)
+    $http.put('/api/events/' + event._id)
   }
 
   function addEvent() {
@@ -90,7 +95,7 @@ function EventController ($http){
   };
 
   function deleteEvent(event) {
-    if(confirm("Delete this? You sure homie?")) {
+    if(confirm("Delete this workout?")) {
     console.log("deleting event");
     $http.delete('/api/events/' + event._id)
       .then(function() {
@@ -102,6 +107,22 @@ function EventController ($http){
 
      }
    }
+
+   function getUser() {
+    $http.get('/api/users/me').then(response => {
+      vm.user = response.data;
+      console.log(vm.user);
+      return vm.user;
+    });
+   }
+   getUser();
+
+
+
+
+
+
+
 }]);
 
 
