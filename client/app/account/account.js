@@ -39,7 +39,19 @@ angular.module('fitTraqApp')
         templateUrl: 'app/account/event/event.html',
         controller: 'EventController',
         controllerAs: 'vm'
-      });
+      })
+      .state('events', {
+        url: '/events',
+        templateUrl: 'app/account/altEvent/altEvent.html',
+        controller: 'EventController',
+        controllerAs: 'vm'
+      })
+      .state('eventShow', {
+        url: '/events/:id',
+        templateUrl: 'app/account/altEvent/altEventShow.html',
+        controller: 'EventController',
+        controllerAs: 'vm'
+      })
   })
   .run(function($rootScope) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {

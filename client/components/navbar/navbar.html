@@ -30,6 +30,7 @@
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
         <li ng-show="nav.isLoggedIn()">Hello {{ nav.getCurrentUser().name }}!</p> </li>
+        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="events">Workouts</a></li>
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="calendar">My Calendar</a></li>
         <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
       </ul>

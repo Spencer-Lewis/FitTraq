@@ -40,9 +40,9 @@
     <div class="modal-content">
         <h4 id='date' ng-model='vm.date'></h4>
         <h4>Select a Workout</h4>
-        <form class="add-event" ng-submit="vm.Log(); vm.addEvent(); vm.getEvents()">
+        <form class="add-event" ng-submit="vm.Log(); vm.addEvent(); vm.getEvents(); vm.closeModal();">
           <div>
-              <select name='select'>
+              <select placeholder='Workout Type' ng-model='vm.workoutType' name='vm.workoutType'>
                   <option value="cardio">Cardio</option>
                   <option value="bodyweight">Bodyweight</option>
                   <option value="weightlifts">Weightlifts</option>
@@ -78,34 +78,28 @@
 </div>
 
 
-<div ng-controller='EventController as vm'>
-        <ul>
-          <li id="events">{{ vm.events }}</li>
-        </ul>
-</div>
 
 
 <script>
   $(document).ready(function() {
     $('select').material_select();
     // var events = [{title: "Derpfest", start: new Date(), datetime: new Date()}];
-    var events = $('#events').text();
-    console.log(events);
-    $('#calendar').fullCalendar({
 
-        events: events,
-        eventClick: function(date, jsEvent, view) {
-          console.log(date.start._i);
-          // $('#modal2').html(date.title + "<br>");
-          // $('#modal2').append(date.start._i);
-          $('#modal2').openModal();
-        },
-        dayClick: function(date, jsEvent, view) {
-          var today = date.format();
-          $('#modal1 #date').html(today);
-          $('#modal1').openModal();
-        }
-    })
+    // $('#calendar').fullCalendar({
+
+    //     events: events,
+    //     eventClick: function(date, jsEvent, view) {
+    //       console.log(date.start._i);
+    //       // $('#modal2').html(date.title + "<br>");
+    //       // $('#modal2').append(date.start._i);
+    //       $('#modal2').openModal();
+    //     },
+    //     dayClick: function(date, jsEvent, view) {
+    //       var today = date.format();
+    //       $('#modal1 #date').html(today);
+    //       $('#modal1').openModal();
+    //     }
+    // })
 });
 </script>
 
