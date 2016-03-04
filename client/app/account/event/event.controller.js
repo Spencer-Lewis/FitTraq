@@ -50,8 +50,8 @@ function EventController ($http){
 
   function closeModal() {
     $('#modal1').closeModal();
-    buildCalendar();
     getEvents();
+    buildCalendar();
     location.reload();
   }
 
